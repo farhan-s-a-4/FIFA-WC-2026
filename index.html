@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#020714">
+    <title>Group Stage | FIFA World Cup 2026 Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main id="fwc26-dashboard" class="fwc26-app app-shell" data-page="groups" data-matches-url="./data/matches.csv">
+      <div class="ambient-layer" aria-hidden="true">
+        <span class="glow glow-cyan"></span><span class="glow glow-blue"></span>
+        <span class="stadium-beam beam-left"></span><span class="stadium-beam beam-right"></span>
+        <span class="pitch-lines"></span><span class="particle-field"></span>
+      </div>
+
+      <header class="app-header">
+        <div>
+          <p class="hero-kicker">Page 1</p>
+          <h1>GROUP STAGE</h1>
+          <p class="hero-subtitle">Select a group, then search teams by name.</p>
+        </div>
+        <div class="tournament-mark">FWC 26</div>
+      </header>
+
+      <nav class="dashboard-nav page-nav" aria-label="Dashboard pages">
+        <a class="nav-link active" href="./index.html">Group Stage</a>
+        <a class="nav-link" href="./third-place.html">Third Teams</a>
+        <a class="nav-link" href="./knockout.html">Knockout Stage</a>
+        <a class="nav-link" href="./results.html">Past Results</a>
+        <span class="nav-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <section class="page-panel active">
+        <div class="section-heading">
+          <span class="accent-bar"></span>
+          <div>
+            <p class="section-kicker">Group Tables</p>
+            <h2>Point Table</h2>
+          </div>
+        </div>
+
+        <section class="control-strip group-control" aria-label="Group and team search">
+          <div class="group-selector" id="group-filters" aria-label="Select group">
+            <button class="group-pill active" type="button" data-target="A">Group A</button>
+            <button class="group-pill" type="button" data-target="B">Group B</button>
+            <button class="group-pill" type="button" data-target="C">Group C</button>
+            <button class="group-pill" type="button" data-target="D">Group D</button>
+            <button class="group-pill" type="button" data-target="E">Group E</button>
+            <button class="group-pill" type="button" data-target="F">Group F</button>
+            <button class="group-pill" type="button" data-target="G">Group G</button>
+            <button class="group-pill" type="button" data-target="H">Group H</button>
+            <button class="group-pill" type="button" data-target="I">Group I</button>
+            <button class="group-pill" type="button" data-target="J">Group J</button>
+            <button class="group-pill" type="button" data-target="K">Group K</button>
+            <button class="group-pill" type="button" data-target="L">Group L</button>
+          </div>
+          <label class="search-box">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input type="search" id="team-search" placeholder="Search teams by name..." autocomplete="off">
+          </label>
+        </section>
+
+        <p class="prediction-status" id="data-status">Loading match CSV...</p>
+
+        <div class="group-table-stack" id="tables-container">
+          <article class="standings-card group-table active" id="table-A">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group A</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-A"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-B">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group B</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-B"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-C">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group C</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-C"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-D">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group D</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-D"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-E">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group E</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-E"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-F">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group F</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-F"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-G">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group G</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-G"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-H">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group H</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-H"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-I">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group I</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-I"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-J">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group J</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-J"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-K">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group K</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-K"></tbody>
+            </table>
+          </article>
+          <article class="standings-card group-table active" id="table-L">
+            <div class="table-title"><span class="accent-bar compact"></span><h3>Group L</h3></div>
+            <table class="standings-table">
+              <thead><tr><th>Pos</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>RC</th><th>YC</th><th>Pts</th></tr></thead>
+              <tbody id="tbody-L"></tbody>
+            </table>
+          </article>
+
+
+
+
+
+          </div>
+      </section>
+    </main>
+
+    <template id="team-row-template">
+      <tr class="team-row">
+        <td><span class="rank-badge" data-col="rank"></span></td>
+        <td>
+          <span class="team-identity">
+            <span class="team-flag" data-col="code"></span>
+            <span class="team-name" data-col="name"></span>
+          </span>
+        </td>
+        <td data-col="played"></td>
+        <td data-col="wins"></td>
+        <td data-col="draws"></td>
+        <td data-col="losses"></td>
+        <td data-col="gf"></td>
+        <td data-col="ga"></td>
+        <td class="goal-diff" data-col="gd"></td>
+        <td data-col="rc"></td>
+        <td data-col="yc"></td>
+        <td class="points" data-col="pts"></td>
+      </tr>
+    </template>
+
+    <script src="./fwc26-dashboard.js" defer></script>
+  </body>
+</html>

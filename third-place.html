@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#020714">
+    <title>Third-Placed Teams | FIFA World Cup 2026 Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main id="fwc26-dashboard" class="fwc26-app app-shell" data-page="third" data-matches-url="./data/matches.csv">
+      <div class="ambient-layer" aria-hidden="true"><span class="glow glow-cyan"></span><span class="glow glow-blue"></span><span class="stadium-beam beam-left"></span><span class="stadium-beam beam-right"></span></div>
+
+      <header class="app-header">
+        <div>
+          <p class="hero-kicker">Page 2</p>
+          <h1>THIRD TEAMS</h1>
+          <p class="hero-subtitle">Comparison table of all third-placed teams across the 12 groups.</p>
+        </div>
+        <div class="tournament-mark">FWC 26</div>
+      </header>
+
+      <nav class="dashboard-nav page-nav">
+        <a class="nav-link" href="./index.html">Group Stage</a>
+        <a class="nav-link active" href="./third-place.html">Third Teams</a>
+        <a class="nav-link" href="./knockout.html">Knockout Stage</a>
+        <a class="nav-link" href="./results.html">Past Results</a>
+        <span class="nav-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <section class="page-panel active">
+        <div class="section-heading">
+          <span class="accent-bar yellow"></span>
+          <div>
+            <p class="section-kicker">Wildcard Standings</p>
+            <h2>Third-Place Ranking</h2>
+          </div>
+        </div>
+
+        <p class="prediction-status" id="data-status">Loading match CSV...</p>
+
+        <article class="standings-card entry-card" id="third-table-container">
+          <table class="standings-table third-ranking-table">
+            <thead>
+              <tr><th>Rank</th><th>Team</th><th>Group</th><th>Pts</th><th>GD</th><th>GF</th><th>RC</th><th>YC</th><th>Status</th></tr>
+            </thead>
+            <tbody id="third-tbody"></tbody>
+          </table>
+        </article>
+      </section>
+    </main>
+
+    <template id="third-row-template">
+      <tr class="team-row">
+        <td><span class="rank-badge" data-col="rank"></span></td>
+        <td><span class="team-identity"><span class="team-flag" data-col="code"></span><span class="team-name" data-col="name"></span></span></td>
+        <td data-col="group"></td><td class="points" data-col="pts"></td><td class="goal-diff" data-col="gd"></td>
+        <td data-col="gf"></td><td data-col="rc"></td><td data-col="yc"></td><td data-col="status"></td>
+      </tr>
+    </template>
+    <script src="./fwc26-dashboard.js" defer></script>
+  </body>
+</html>

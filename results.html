@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Past Results | FIFA World Cup 2026 Dashboard</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main id="fwc26-dashboard" class="fwc26-app app-shell" data-page="results" data-matches-url="./data/matches.csv">
+      <div class="ambient-layer" aria-hidden="true"><span class="glow glow-cyan"></span><span class="glow glow-blue"></span></div>
+
+      <header class="app-header">
+        <div>
+          <p class="hero-kicker">Page 4</p>
+          <h1>PAST RESULTS</h1>
+          <p class="hero-subtitle">Match cards generated from your editable CSV file.</p>
+        </div>
+        <div class="tournament-mark">FWC 26</div>
+      </header>
+
+      <nav class="dashboard-nav page-nav">
+        <a class="nav-link" href="./index.html">Group Stage</a>
+        <a class="nav-link" href="./third-place.html">Third Teams</a>
+        <a class="nav-link" href="./knockout.html">Knockout Stage</a>
+        <a class="nav-link active" href="./results.html">Past Results</a>
+        <span class="nav-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <section class="page-panel active">
+        <div class="section-heading">
+          <span class="accent-bar red"></span>
+          <div>
+            <p class="section-kicker">Match Archive</p>
+            <h2>Past Match Results</h2>
+          </div>
+        </div>
+        <p class="prediction-status" id="data-status">Loading match CSV...</p>
+        <div class="match-grid" id="results-grid"></div>
+      </section>
+    </main>
+
+    <template id="match-card-template">
+      <article class="match-card finished">
+        <div class="match-status"><span class="status-dot"></span><span data-col="meta"></span></div>
+        <div class="match-teams">
+          <span class="team-identity"><span class="team-flag" data-col="team1-code"></span><span class="team-name" data-col="team1-name"></span></span>
+          <strong class="score" data-col="score"></strong>
+          <span class="team-identity"><span class="team-flag" data-col="team2-code"></span><span class="team-name" data-col="team2-name"></span></span>
+        </div>
+        <p class="match-details" data-col="details"></p>
+      </article>
+    </template>
+    <script src="./fwc26-dashboard.js" defer></script>
+  </body>
+</html>

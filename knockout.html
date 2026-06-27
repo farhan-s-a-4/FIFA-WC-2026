@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#020714">
+    <title>Knockout Stage | FIFA World Cup 2026 Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main id="fwc26-dashboard" class="fwc26-app app-shell" data-page="knockout" data-matches-url="./data/matches.csv">
+      <div class="ambient-layer" aria-hidden="true">
+        <span class="glow glow-cyan"></span><span class="glow glow-blue"></span>
+        <span class="stadium-beam beam-left"></span><span class="stadium-beam beam-right"></span>
+      </div>
+
+      <header class="app-header">
+        <div>
+          <p class="hero-kicker">Page 3</p>
+          <h1>KNOCKOUT STAGE</h1>
+          <p class="hero-subtitle">Official Round of 32 tournament bracket allocation.</p>
+        </div>
+        <div class="tournament-mark">FWC 26</div>
+      </header>
+
+      <nav class="dashboard-nav page-nav">
+        <a class="nav-link" href="./index.html">Group Stage</a>
+        <a class="nav-link" href="./third-place.html">Third Teams</a>
+        <a class="nav-link active" href="./knockout.html">Knockout Stage</a>
+        <a class="nav-link" href="./results.html">Past Results</a>
+        <span class="nav-indicator" aria-hidden="true"></span>
+      </nav>
+
+      <section class="page-panel active">
+        <div class="section-heading">
+          <span class="accent-bar gold"></span>
+          <div>
+            <p class="section-kicker">Round of 32</p>
+            <h2>Tournament Bracket</h2>
+          </div>
+        </div>
+
+        <p class="prediction-status" id="data-status">Processing qualifiers...</p>
+        
+    <div class="bracket-container" id="knockout-bracket">
+        <!-- LEFT WING -->
+        <div class="bracket-column round-32" id="left-r32"></div>
+        <div class="bracket-column round-16" id="left-r16"></div>
+        <div class="bracket-column quarters" id="left-qf"></div>
+        <div class="bracket-column semis" id="left-sf"></div>
+
+        <!-- CENTER CHAMPIONSHIP COLUMN -->
+        <div class="bracket-column center-stage" id="center-finals"></div>
+
+        <!-- RIGHT WING -->
+        <div class="bracket-column semis" id="right-sf"></div>
+        <div class="bracket-column quarters" id="right-qf"></div>
+        <div class="bracket-column round-16" id="right-r16"></div>
+        <div class="bracket-column round-32" id="right-r32"></div>
+    </div>
+      </section>
+    </main>
+
+    <template id="knockout-match-template">
+      <article class="bracket-match match-card">
+        <div class="match-status">
+          <span class="status-dot"></span><span class="match-number"></span>
+        </div>
+        <div class="match-teams knockout-teams">
+          <span class="team-identity">
+            <span class="team-flag" data-col="t1-seed"></span>
+            <span class="team-name" data-col="t1-name"></span>
+          </span>
+          <br>
+          <strong class="score">VS</strong>
+          <br>
+          <span class="team-identity">
+            <span class="team-flag" data-col="t2-seed"></span>
+            <span class="team-name" data-col="t2-name"></span>
+          </span>
+        </div>
+      </article>
+    </template>
+    <script src="./fwc26-dashboard.js" defer></script>
+  </body>
+</html>

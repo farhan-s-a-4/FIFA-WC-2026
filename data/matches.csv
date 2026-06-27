@@ -1,0 +1,67 @@
+group,bd standard time,team-1,team-2,goals of team-1,goals of team-2,yellow card of team-1,yellow card of team-2,red card of team-1,red card of team-2,fouls done by team-1,fouls done by team-2,offsides done by team-1,offsides done by team-2
+A,12-Jun,Mexico,South Africa,2,0,1,2,1,2,12,11,1,1
+A,12-Jun,South Korea,Czechia,2,1,1,0,0,0,9,16,2,2
+B,13-Jun,Canada,Bosnia and Herzegovina,1,1,2,3,0,0,10,20,1,0
+D,13-Jun,United States,Paraguay,4,1,1,5,0,0,13,17,2,1
+B,14-Jun,Qatar,Switzerland,1,1,2,1,0,0,12,11,0,1
+C,14-Jun,Brazil,Morocco,1,1,2,0,0,0,16,14,0,1
+C,14-Jun,Haiti,Scotland,0,1,1,3,0,0,23,21,3,1
+D,14-Jun,Australia,Turkey,2,0,0,1,0,0,12,4,1,3
+E,14-Jun,Germany,Curacao,7,1,0,0,0,0,18,11,0,1
+F,15-Jun,Netherlands,Japan,2,2,3,0,0,0,7,7,1,0
+E,15-Jun,Ivory Coast,Ecuador,1,0,3,1,0,0,10,13,0,0
+F,15-Jun,Sweden,Tunisia,5,1,0,1,0,0,10,8,3,6
+H,15-Jun,Spain,Cape Verde,0,0,1,1,0,0,10,1,2,3
+G,16-Jun,Belgium,Egypt,1,1,2,2,0,0,15,15,0,1
+H,16-Jun,Saudi Arabia,Uruguay,1,1,1,0,0,0,11,6,0,1
+G,16-Jun,Iran,New Zealand,2,2,1,0,0,0,10,8,2,0
+I,17-Jun,France,Senegal,3,1,0,0,0,0,5,9,1,3
+I,17-Jun,Iraq,Norway,1,4,1,0,0,0,12,13,1,0
+J,17-Jun,Argentina,Algeria,3,0,0,0,0,0,13,8,3,1
+J,17-Jun,Austria,Jordan,3,1,1,0,0,0,12,7,3,1
+K,17-Jun,Portugal,Congo DR,1,1,3,1,0,0,9,10,3,2
+L,18-Jun,England,Croatia,4,2,0,0,0,0,10,12,0,1
+L,18-Jun,Ghana,Panama,1,0,1,2,0,0,9,11,4,1
+K,18-Jun,Uzbekistan,Colombia,1,3,1,1,0,0,14,11,0,3
+A,18-Jun,Czechia,South Africa,1,1,1,2,0,0,12,10,2,3
+B,19-Jun,Switzerland,Bosnia and Herzegovina,4,1,1,2,0,1,7,17,3,1
+B,19-Jun,Canada,Qatar,6,0,1,1,0,2,9,10,1,1
+A,19-Jun,Mexico,South Korea,1,0,0,2,0,0,9,7,3,6
+D,20-Jun,United States,Australia,2,0,3,4,0,0,12,16,1,0
+C,20-Jun,Scotland,Morocco,0,1,1,1,0,0,11,8,1,0
+C,20-Jun,Brazil,Haiti,3,0,1,3,0,0,13,15,8,4
+D,20-Jun,Turkey,Paraguay,0,1,1,1,0,1,14,15,2,3
+F,20-Jun,Netherlands,Sweden,5,1,0,3,0,0,9,12,3,3
+E,21-Jun,Germany,Ivory Coast,2,1,0,0,0,0,5,7,0,1
+E,21-Jun,Ecuador,Curacao,0,0,1,5,0,0,7,10,1,2
+F,21-Jun,Tunisia,Japan,0,4,0,0,0,0,8,15,1,1
+H,21-Jun,Spain,Saudi Arabia,4,0,0,2,0,0,10,8,2,3
+G,22-Jun,Belgium,Iran,0,0,1,1,1,0,7,9,3,4
+H,22-Jun,Uruguay,Cape Verde,2,2,2,2,0,0,11,4,3,0
+G,22-Jun,New Zealand,Egypt,1,3,2,1,0,0,14,8,3,0
+J,22-Jun,Argentina,Austria,2,0,2,2,0,0,13,12,2,0
+I,23-Jun,France,Iraq,3,0,0,1,0,0,8,4,1,0
+I,23-Jun,Norway,Senegal,3,2,0,0,0,0,13,5,0,4
+J,23-Jun,Jordan,Algeria,1,2,1,1,0,0,11,6,1,0
+k,23-Jun,Portugal,Uzbekistan,5,0,1,1,0,0,14,15,2,2
+L,24-Jun,England,Ghana,0,0,1,1,0,0,14,24,2,2
+L,24-Jun,Panama,Croatia,0,1,1,1,0,0,19,12,1,2
+K,24-Jun,Colombia,Congo DR,1,0,2,1,0,0,12,17,7,0
+B,25-Jun,Switzerland,Canada,2,1,1,2,0,0,19,13,1,3
+B,25-Jun,Bosnia and Herzegovina,Qatar,3,1,1,1,0,0,9,14,1,3
+C,25-Jun,Morocco,Haiti,4,2,0,3,0,0,10,18,5,0
+C,25-Jun,Scotland,Brazil,0,3,1,2,0,0,10,11,0,1
+A,25-Jun,South Africa,South Korea,1,0,1,1,0,0,7,9,3,0
+A,25-Jun,Czechia,Mexico,0,3,0,1,0,0,9,13,1,0
+E,26-Jun,Curacao,Ivory Coast,0,2,2,1,0,0,11,6,2,1
+E,26-Jun,Ecuador,Germany,2,1,3,1,0,0,15,10,1,0
+F,26-Jun,Tunisia,Netherlands,1,3,0,0,0,0,11,10,2,1
+F,26-Jun,Japan,Sweden,1,1,1,2,0,0,20,11,3,2
+D,26-Jun,Turkey,United States,3,2,0,1,0,0,14,13,1,0
+D,26-Jun,Paraguay,Australia,0,0,1,1,0,0,9,6,0,0
+I,27-Jun,Norway,France,1,4,1,1,0,0,9,9,1,2
+I,27-Jun,Senegal,Iraq,5,0,2,2,0,1,10,11,1,0
+H,27-Jun,Cape Verde,Saudi Arabia,0,0,1,3,0,0,10,16,2,0
+H,27-Jun,Uruguay,Spain,0,1,3,1,1,0,14,14,5,2
+G,27-Jun,New Zealand,Belgium,1,5,2,0,0,0,10,7,1,1
+G,27-Jun,Egypt,Iran,1,1,3,4,0,0,11,16,0,3
