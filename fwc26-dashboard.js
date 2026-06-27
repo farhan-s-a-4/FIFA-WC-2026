@@ -4,6 +4,7 @@
   const GROUPS = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"];
   const MATCHES_CSV_URL = "./data/matches.csv"; 
   const RANK_CSV_URL = "./data/rank.csv"; 
+  const RO32_MAPPING_CSV_URL = "./data/RO32 maping.csv";
   const KNOCKOUT_REFRESH_MS = 30000;
   const KNOCKOUT_RESULT_FILES = {
     ro32: { url: "./data/RO32.csv", dataKey: "ro32Url" },
@@ -50,13 +51,15 @@
     const status = document.getElementById("data-status");
     if (status) status.textContent = "Processing official tiebreaker rules...";
 
-    const [matchesCsvText, rankCsvText] = await Promise.all([
+    const [matchesCsvText, rankCsvText, mappingCsvText] = await Promise.all([
       readCsv(app.dataset.matchesUrl || MATCHES_CSV_URL),
-      readCsv(RANK_CSV_URL) 
+      readCsv(RANK_CSV_URL),
+      readCsv(RO32_MAPPING_CSV_URL) 
     ]);
 
     const ranks = parseRankCsv(rankCsvText);
     const rawMatches = parseCsv(matchesCsvText).map(normalizeMatch).filter((m) => m.group && m.team1 && m.team2);
+    const ro32MappingData = parseCsv(mappingCsvText);
     const standings = buildStandings(rawMatches, ranks);
     const groupRankings = resolveAllGroups(standings, rawMatches, ranks);
 
@@ -72,7 +75,7 @@
     } else if (page === "knockout") {
       const knockoutResults = await loadKnockoutResults(app);
       const resultCount = countKnockoutResults(knockoutResults);
-      renderKnockoutMatrix(groupRankings, knockoutResults);
+      renderKnockoutMatrix(groupRankings, knockoutResults, ro32MappingData);
       if (status) {
         status.textContent = resultCount
           ? `Knockout bracket updated from ${resultCount} result row${resultCount === 1 ? "" : "s"}.`
@@ -377,7 +380,7 @@
     setupCardEntrance(document);
   }
 
-function renderKnockoutMatrix(groupRankings, knockoutResults = {}) {
+  function renderKnockoutMatrix(groupRankings, knockoutResults = {}, ro32MappingData = []) {
     const template = document.getElementById("knockout-match-template");
     if (!template) return;
     const results = Array.isArray(knockoutResults) ? { ro32: knockoutResults } : knockoutResults;
@@ -399,23 +402,43 @@ function renderKnockoutMatrix(groupRankings, knockoutResults = {}) {
       return t ? { ...t, seed: `${rank}${grp}` } : { name: "TBD", seed: `${rank}${grp}` };
     };
 
+    let mappingRow;
+    if (ro32MappingData && ro32MappingData.length > 0 && thirdTeams.length === 8) {
+      const qualifiedGroups = thirdTeams.map(t => t.group.toLowerCase());
+      mappingRow = ro32MappingData.find(row => {
+        const groups = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+        return groups.every(g => {
+          const expected = qualifiedGroups.includes(g) ? "1" : "0";
+          return String(row[g]).trim() === expected;
+        });
+      });
+    }
+
+    const getMapped3rd = (mappingValue, defaultLabel) => {
+      if (!mappingValue || !mappingValue.trim()) return { name: "TBD", seed: defaultLabel };
+      const cleanValue = mappingValue.trim();
+      const groupLetter = cleanValue.replace('3', '').toUpperCase();
+      const team = thirdTeams.find(t => t.group === groupLetter);
+      return team ? { ...team, seed: cleanValue } : { name: "TBD", seed: defaultLabel };
+    };
+
     const matches = {
-      73: { t1: getSeed(1, 'E'), t2: get3rd(0, '3(A/B/C/D/F)*') },
-      74: { t1: getSeed(1, 'I'), t2: get3rd(1, '3(C/D/F/G/H)*') },
+      73: { t1: getSeed(1, 'E'), t2: mappingRow ? getMapped3rd(mappingRow['1e'], '3(A/B/C/D/F)*') : get3rd(0, '3(A/B/C/D/F)*') },
+      74: { t1: getSeed(1, 'I'), t2: mappingRow ? getMapped3rd(mappingRow['1i'], '3(C/D/F/G/H)*') : get3rd(1, '3(C/D/F/G/H)*') },
       75: { t1: getSeed(2, 'A'), t2: getSeed(2, 'B') },
       76: { t1: getSeed(1, 'F'), t2: getSeed(2, 'C') },
       77: { t1: getSeed(2, 'K'), t2: getSeed(2, 'L') },
       78: { t1: getSeed(1, 'H'), t2: getSeed(2, 'J') },
-      79: { t1: getSeed(1, 'D'), t2: get3rd(2, '3(B/E/F/I/J)*') },
-      80: { t1: getSeed(1, 'G'), t2: get3rd(3, '3(A/E/H/I/J)*') },
+      79: { t1: getSeed(1, 'D'), t2: mappingRow ? getMapped3rd(mappingRow['1d'], '3(B/E/F/I/J)*') : get3rd(2, '3(B/E/F/I/J)*') },
+      80: { t1: getSeed(1, 'G'), t2: mappingRow ? getMapped3rd(mappingRow['1g'], '3(A/E/H/I/J)*') : get3rd(3, '3(A/E/H/I/J)*') },
       81: { t1: getSeed(1, 'C'), t2: getSeed(2, 'F') },
       82: { t1: getSeed(2, 'E'), t2: getSeed(2, 'I') },
-      83: { t1: getSeed(1, 'A'), t2: get3rd(4, '3(C/E/F/H/I)*') },
-      84: { t1: getSeed(1, 'L'), t2: get3rd(5, '3(E/H/I/J/K)*') },
+      83: { t1: getSeed(1, 'A'), t2: mappingRow ? getMapped3rd(mappingRow['1a'], '3(C/E/F/H/I)*') : get3rd(4, '3(C/E/F/H/I)*') },
+      84: { t1: getSeed(1, 'L'), t2: mappingRow ? getMapped3rd(mappingRow['1l'], '3(E/H/I/J/K)*') : get3rd(5, '3(E/H/I/J/K)*') },
       85: { t1: getSeed(1, 'J'), t2: getSeed(2, 'H') },
       86: { t1: getSeed(2, 'D'), t2: getSeed(2, 'G') },
-      87: { t1: getSeed(1, 'B'), t2: get3rd(6, '3(E/F/G/I/J)*') },
-      88: { t1: getSeed(1, 'K'), t2: get3rd(7, '3(D/E/I/J/L)*') }
+      87: { t1: getSeed(1, 'B'), t2: mappingRow ? getMapped3rd(mappingRow['1b'], '3(E/F/G/I/J)*') : get3rd(6, '3(E/F/G/I/J)*') },
+      88: { t1: getSeed(1, 'K'), t2: mappingRow ? getMapped3rd(mappingRow['1k'], '3(D/E/I/J/L)*') : get3rd(7, '3(D/E/I/J/L)*') }
     };
 
     applyMatchResults(matches, range(73, 88), results.ro32 || []);
