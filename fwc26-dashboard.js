@@ -162,17 +162,22 @@
   }
 
   function normalizeMatch(row) {
+    const groupVal = row.group?.trim().toUpperCase() || "";
+    const knockoutStages = ["RO32", "RO16", "QUARTER FINAL", "SEMI-FINAL", "BRONZE FINAL", "FINAL"];
+    const isKnockout = knockoutStages.includes(groupVal);
+
     return {
-      group: row.group?.trim().toUpperCase(),
+      group: groupVal,
       time: row["bd standard time"] || "",
       team1: row["team-1"] || "",
       team2: row["team-2"] || "",
-      goals1: toNumber(row["goals of team-1"]),
-      goals2: toNumber(row["goals of team-2"]),
+      goals1: isKnockout ? (row["goals of team-1"] || "") : toNumber(row["goals of team-1"]),
+      goals2: isKnockout ? (row["goals of team-2"] || "") : toNumber(row["goals of team-2"]),
       red1: toNumber(row["red card of team-1"]),
       red2: toNumber(row["red card of team-2"]),
       yellow1: toNumber(row["yellow card of team-1"]),
-      yellow2: toNumber(row["yellow card of team-2"])
+      yellow2: toNumber(row["yellow card of team-2"]),
+      isKnockout: isKnockout
     };
   }
 
@@ -635,18 +640,25 @@
     const grid = document.getElementById("results-grid");
     const template = document.getElementById("match-card-template");
     if (!grid || !template) return;
+    
     grid.innerHTML = "";
+    
     matches.forEach(m => {
       const clone = template.content.cloneNode(true);
-      clone.querySelector('[data-col="meta"]').textContent = `GROUP ${m.group} · ${m.time}`;
+      
+      const stageLabel = m.isKnockout ? m.group : `GROUP ${m.group}`;
+      
+      clone.querySelector('[data-col="meta"]').textContent = `${stageLabel} · ${m.time}`;
       clone.querySelector('[data-col="team1-code"]').textContent = TEAM_CODES[m.team1] || m.team1.slice(0, 3).toUpperCase();
       clone.querySelector('[data-col="team1-name"]').textContent = m.team1;
       clone.querySelector('[data-col="score"]').textContent = `${m.goals1} - ${m.goals2}`;
       clone.querySelector('[data-col="team2-code"]').textContent = TEAM_CODES[m.team2] || m.team2.slice(0, 3).toUpperCase();
       clone.querySelector('[data-col="team2-name"]').textContent = m.team2;
       clone.querySelector('[data-col="details"]').textContent = `Cards: ${m.team1} ${m.red1}RC ${m.yellow1}YC · ${m.team2} ${m.red2}RC ${m.yellow2}YC`;
+      
       grid.appendChild(clone);
     });
+    
     setupCardEntrance(document);
   }
 
